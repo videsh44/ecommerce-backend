@@ -9,20 +9,20 @@ const aws = require("aws-sdk");
 
 dotenv.config();
 
-//const mongoDB ="mongodb+srv://videsh:videsh9811346435@cluster0-51zsf.mongodb.net/ecom?retryWrites=true&w=majority";
-
 //const mongoUrl = process.env.MONGO_URL_DEV;
 
+/**
 let s3 = new aws.S3({
   mongoUrl: process.env.MONGO_URL_DEV,
 });
 
 const mongoUrl = s3.config.mongoUrl;
+ */
 
 //console.log(s3.config.mongoUrl);
 
 mongoose
-  .connect(mongoUrl, {
+  .connect(process.env.MONGO_URL_DEV, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
