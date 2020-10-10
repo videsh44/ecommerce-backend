@@ -9,6 +9,8 @@ const aws = require("aws-sdk");
 
 dotenv.config();
 
+const port = process.env.PORT || 5000;
+
 //const mongoUrl = process.env.MONGO_URL_DEV;
 
 /**
@@ -88,6 +90,6 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(8080, () => {
+app.listen(port, () => {
   console.log("Server is listening on port 8080");
 });
