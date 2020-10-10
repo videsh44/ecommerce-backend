@@ -102,7 +102,7 @@ exports.getCartOrderByUser = (req, res, next) => {
               is_discount: item.product.is_discount,
               name: item.product.name,
               price: item.product.price,
-              productImage: `http://localhost:8080/${item.product.productImage}`,
+              productImage: `https://ecommerce-videsh.herokuapp.com/${item.product.productImage}`,
             },
             quantity: item.quantity,
             user: item.user,

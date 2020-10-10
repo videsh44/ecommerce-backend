@@ -20,7 +20,7 @@ exports.getAllProducts = (req, res, next) => {
             _id: product._id,
             name: product.name,
             price: product.price,
-            productImage: `http://localhost:8080/${product.productImage}`,
+            productImage: `https://ecommerce-videsh.herokuapp.com/${product.productImage}`,
             category: product.category,
             is_discount: product.is_discount,
             discount: product.discount,
@@ -66,7 +66,7 @@ exports.getProductsByCategory = (req, res, next) => {
             _id: product._id,
             name: product.name,
             price: product.price,
-            productImage: `http://localhost:8080/${product.productImage}`,
+            productImage: `https://ecommerce-videsh.herokuapp.com/${product.productImage}`,
             category: product.category,
             is_discount: product.is_discount,
             discount: product.discount,
@@ -157,7 +157,7 @@ exports.getOneProduct = (req, res, next) => {
           _id: product._id,
           name: product.name,
           price: product.price,
-          productImage: `http://localhost:8080/${product.productImage}`,
+          productImage: `https://ecommerce-videsh.herokuapp.com/${product.productImage}`,
           category: product.category,
           is_discount: product.is_discount,
           discount: product.discount,
@@ -176,7 +176,7 @@ exports.getOneProduct = (req, res, next) => {
 };
 
 exports.updateOneProduct = (req, res, next) => {
-  console.log(req);
+  //console.log(req);
   const productId = req.params.productId;
   // const updateOps = {};
   // for (const prop of req.body) {
