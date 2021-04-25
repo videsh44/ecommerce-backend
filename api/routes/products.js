@@ -37,7 +37,7 @@ router.get('/', ProductsController.getAllProducts);
 router.post(
   '/',
 
-  upload.array('productImage', 6),
+  upload.single('productImage'),
   ProductsController.createOneProduct
 );
 
@@ -47,7 +47,7 @@ router.get('/category/:category', ProductsController.getProductsByCategory);
 
 router.patch(
   '/:productId',
-  upload.array('productImage', 6),
+  upload.single('productImage'),
   ProductsController.updateProductNew
 );
 
