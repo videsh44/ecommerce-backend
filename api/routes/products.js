@@ -1,12 +1,12 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const multer = require("multer");
+const multer = require('multer');
 
 //const checkAuth = require("../middleware/check-auth");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    cb(null, 'uploads/');
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -30,27 +30,27 @@ const upload = multer({
   // fileFilter: fileFilter
 });
 
-const ProductsController = require("../controllers/products");
+const ProductsController = require('../controllers/products');
 
-router.get("/", ProductsController.getAllProducts);
+router.get('/', ProductsController.getAllProducts);
 
 router.post(
-  "/",
+  '/',
 
-  upload.single("productImage"),
+  upload.array('productImage', 6),
   ProductsController.createOneProduct
 );
 
-router.get("/:productId", ProductsController.getOneProduct);
+router.get('/:productId', ProductsController.getOneProduct);
 
-router.get("/category/:category", ProductsController.getProductsByCategory);
+router.get('/category/:category', ProductsController.getProductsByCategory);
 
 router.patch(
-  "/:productId",
-  upload.single("productImage"),
+  '/:productId',
+  upload.array('productImage', 6),
   ProductsController.updateProductNew
 );
 
-router.delete("/:productId", ProductsController.deleteOneProduct);
+router.delete('/:productId', ProductsController.deleteOneProduct);
 
 module.exports = router;

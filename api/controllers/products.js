@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Product = require("../models/product");
+const mongoose = require('mongoose');
+const Product = require('../models/product');
 
 exports.getAllProducts = (req, res, next) => {
   const limit = +req.query.limit;
@@ -10,7 +10,7 @@ exports.getAllProducts = (req, res, next) => {
     .countDocuments()
     .then((totalCount) => {
       totalProducts = totalCount;
-      return Product.find().sort({ date: "desc" }).skip(offset).limit(limit);
+      return Product.find().sort({ date: 'desc' }).skip(offset).limit(limit);
     })
     .then((products) => {
       const response = {
@@ -46,14 +46,14 @@ exports.getProductsByCategory = (req, res, next) => {
     .then((totalCount) => {
       totalProducts = totalCount;
       return Product.find({ category: category })
-        .sort({ date: "desc" })
+        .sort({ date: 'desc' })
         .skip(offset)
         .limit(limit);
     })
     .then((products) => {
       if (!products) {
         const error = new Error(
-          "No products Found with this category" + category
+          'No products Found with this category' + category
         );
         error.statusCode = 404;
         throw error;
@@ -66,7 +66,8 @@ exports.getProductsByCategory = (req, res, next) => {
             _id: product._id,
             name: product.name,
             price: product.price,
-            productImage: `https://ecommerce-videsh.herokuapp.com/${product.productImage}`,
+            //  productImage: `https://ecommerce-videsh.herokuapp.com/${product.productImage}`,
+            productImage: product.productImage,
             category: product.category,
             is_discount: product.is_discount,
             discount: product.discount,
@@ -128,7 +129,7 @@ exports.createOneProduct = (req, res, next) => {
     .save()
     .then((product) => {
       res.status(200).json({
-        message: "Product Created Successfully!",
+        message: 'Product Created Successfully!',
         product: {
           _id: product._id,
           name: product.name,
@@ -157,7 +158,8 @@ exports.getOneProduct = (req, res, next) => {
           _id: product._id,
           name: product.name,
           price: product.price,
-          productImage: `https://ecommerce-videsh.herokuapp.com/${product.productImage}`,
+          //  productImage: `https://ecommerce-videsh.herokuapp.com/${product.productImage}`,
+          productImage: product.productImage,
           category: product.category,
           is_discount: product.is_discount,
           discount: product.discount,
@@ -166,7 +168,7 @@ exports.getOneProduct = (req, res, next) => {
         res.status(200).json(response);
       } else {
         res.status(404).json({
-          message: "Product Not Found!",
+          message: 'Product Not Found!',
         });
       }
     })
@@ -187,7 +189,7 @@ exports.updateOneProduct = (req, res, next) => {
     .exec()
     .then((result) => {
       res.status(200).json({
-        message: "Updated Product Successfully!",
+        message: 'Updated Product Successfully!',
         result: result,
       });
     })
@@ -202,29 +204,29 @@ exports.updateProductNew = (req, res) => {
   // Validate Request
   if (!req.body.name) {
     return res.status(400).send({
-      message: "name can not be empty",
+      message: 'name can not be empty',
     });
   }
 
   if (!req.body.price) {
     return res.status(400).send({
-      message: "price can not be empty",
+      message: 'price can not be empty',
     });
   }
 
   if (!req.body.category) {
     return res.status(400).send({
-      message: "category can not be empty",
+      message: 'category can not be empty',
     });
   }
   if (!req.body.is_discount) {
     return res.status(400).send({
-      message: "is_discount can not be empty",
+      message: 'is_discount can not be empty',
     });
   }
   if (!req.body.discount) {
     return res.status(400).send({
-      message: "discount can not be empty",
+      message: 'discount can not be empty',
     });
   }
 
@@ -250,19 +252,19 @@ exports.updateProductNew = (req, res) => {
     .then((product) => {
       if (!product) {
         return res.status(404).send({
-          message: "Product not found with id " + productId,
+          message: 'Product not found with id ' + productId,
         });
       }
       res.send(product);
     })
     .catch((err) => {
-      if (err.kind === "ObjectId") {
+      if (err.kind === 'ObjectId') {
         return res.status(404).send({
-          message: "Product not found with id " + productId,
+          message: 'Product not found with id ' + productId,
         });
       }
       return res.status(500).send({
-        message: "Error updating Product with id " + productId,
+        message: 'Error updating Product with id ' + productId,
       });
     });
 };
@@ -273,7 +275,7 @@ exports.deleteOneProduct = (req, res, next) => {
     .exec()
     .then((result) => {
       res.status(200).json({
-        message: "Deleted Product Successfully!",
+        message: 'Deleted Product Successfully!',
         result: result,
       });
     })
